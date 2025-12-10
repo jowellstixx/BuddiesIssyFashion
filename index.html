@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuddiesByIssy - Premium Fashion Collection</title>
+    <title>NOIR - Premium Fashion Collection</title>
     <style>
         * {
             margin: 0;
@@ -38,6 +38,21 @@
             background: linear-gradient(135deg, #ffffff, #a0a0a0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #ffffff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
         }
 
         nav ul {
@@ -261,6 +276,11 @@
         }
 
         @media (max-width: 768px) {
+            .logo {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
             .hero h1 {
                 font-size: 48px;
                 letter-spacing: 5px;
@@ -272,6 +292,10 @@
 
             nav ul {
                 gap: 20px;
+            }
+
+            nav a {
+                font-size: 12px;
             }
 
             .grid {
@@ -286,13 +310,18 @@
 </head>
 <body>
     <header>
-        <div class="logo">Buddies</div>
-        <nav>
+        <div class="logo">BuddiesbyIssy</div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="Collection.html">COLLECTION</a></li>
-                <li><a href="About.html">ABOUT</a></li>
-                <li><a href="Contact.html">CONTACT</a></li>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#collection">COLLECTION</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
         </nav>
     </header>
@@ -304,8 +333,8 @@
         </div>
         <div class="hero-content">
             <h1>ELEGANCE REDEFINED</h1>
-            <p>DISCOVER THE NEW COLLECTION</p>
-            <a href="Collection.html" class="cta-btn">EXPLORE NOW</a>
+            <p>DISCOVER THE NEW WINTER COLLECTION 2025</p>
+            <a href="#collection" class="cta-btn">EXPLORE NOW</a>
         </div>
     </section>
 
@@ -358,10 +387,28 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 BUDDIES BY ISSY. ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2025 NOIR FASHION. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        const navLinks = document.querySelectorAll('nav a');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
