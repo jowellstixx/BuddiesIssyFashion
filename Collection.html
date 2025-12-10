@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection - BuddiesbyIssy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .page-header {
+            padding: 150px 50px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .page-title {
+            font-size: 64px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: #b0b0b0;
+            letter-spacing: 3px;
+        }
+
+        .filter-bar {
+            padding: 40px 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #333;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #ffffff;
+            color: #0a0a0a;
+            border-color: #ffffff;
+        }
+
+        .collection-grid {
+            padding: 0 50px 100px;
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: #1a1a1a;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+            background: #1a1a1a;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            background: #ffffff;
+            color: #0a0a0a;
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: #000000;
+            letter-spacing: 2px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .page-header {
+                padding: 120px 20px 60px;
+            }
+
+            .page-title {
+                font-size: 40px;
+                letter-spacing: 4px;
+            }
+
+            .filter-bar {
+                padding: 30px 20px;
+                gap: 15px;
+            }
+
+            .collection-grid {
+                padding: 0 20px 60px;
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BuddiesbyIssy</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="collection.html">COLLECTION</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">OUR COLLECTION</h1>
+        <p class="page-subtitle">CURATED DESIGNS FOR EVERY OCCASION</p>
+    </div>
+
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="dresses">DRESSES</button>
+        <button class="filter-btn" data-filter="outerwear">OUTERWEAR</button>
+        <button class="filter-btn" data-filter="casual">CASUAL</button>
+        <button class="filter-btn" data-filter="formal">FORMAL</button>
+    </div>
+
+    <div class="collection-grid">
+        <div class="product-card" data-category="dresses">
+            <div class="product-badge">NEW</div>
+            <img class="product-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Silk Evening Dress">
+            <div class="product-info">
+                <div class="product-category">Evening Wear</div>
+                <div class="product-name">SILK EVENING DRESS</div>
+                <div class="product-price">$1,299</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="outerwear">
+            <img class="product-img" src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=80" alt="Minimalist Coat">
+            <div class="product-info">
+                <div class="product-category">Outerwear</div>
+                <div class="product-name">MINIMALIST COAT</div>
+                <div class="product-price">$899</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="casual">
+            <img class="product-img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80" alt="Urban Collection">
+            <div class="product-info">
+                <div class="product-category">Casual</div>
+                <div class="product-name">URBAN STATEMENT</div>
+                <div class="product-price">$749</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="formal">
+            <div class="product-badge">BEST SELLER</div>
+            <img class="product-img" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80" alt="Classic Blazer">
+            <div class="product-info">
+                <div class="product-category">Formal</div>
+                <div class="product-name">TAILORED BLAZER</div>
+                <div class="product-price">$1,099</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="dresses">
+            <img class="product-img" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" alt="Designer Wear">
+            <div class="product-info">
+                <div class="product-category">Designer</div>
+                <div class="product-name">AVANT-GARDE SET</div>
+                <div class="product-price">$1,499</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="casual">
+            <img class="product-img" src="https://images.unsplash.com/photo-1558769132-cb1aea1c63cd?w=800&q=80" alt="Casual Luxury">
+            <div class="product-info">
+                <div class="product-category">Casual</div>
+                <div class="product-name">CASUAL LUXE</div>
+                <div class="product-price">$649</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="outerwear">
+            <div class="product-badge">NEW</div>
+            <img class="product-img" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" alt="Trench Coat">
+            <div class="product-info">
+                <div class="product-category">Outerwear</div>
+                <div class="product-name">CLASSIC TRENCH</div>
+                <div class="product-price">$1,199</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="formal">
+            <img class="product-img" src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&q=80" alt="Formal Suit">
+            <div class="product-info">
+                <div class="product-category">Formal</div>
+                <div class="product-name">POWER SUIT</div>
+                <div class="product-price">$1,399</div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="dresses">
+            <img class="product-img" src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&q=80" alt="Summer Dress">
+            <div class="product-info">
+                <div class="product-category">Summer</div>
+                <div class="product-name">BREEZY MIDI</div>
+                <div class="product-price">$549</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 BUDDIESBYISSY. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        productCards.forEach(card => {
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+    </script>
+</body>
+</html>
