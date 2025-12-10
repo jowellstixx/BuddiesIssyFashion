@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BuddiesbyIssy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #ffffff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .page-header {
+            padding: 150px 50px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .page-title {
+            font-size: 64px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: #b0b0b0;
+            letter-spacing: 3px;
+        }
+
+        .about-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .story-content h2 {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .values-section {
+            background: #1a1a1a;
+            padding: 80px 50px;
+            margin: 80px 0;
+        }
+
+        .values-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 60px;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #888;
+            letter-spacing: 0.5px;
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px;
+        }
+
+        .team-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .team-member:hover .member-img {
+            filter: grayscale(0%);
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .member-role {
+            font-size: 14px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: #000000;
+            letter-spacing: 2px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .page-header {
+                padding: 120px 20px 60px;
+            }
+
+            .page-title {
+                font-size: 40px;
+                letter-spacing: 4px;
+            }
+
+            .about-section {
+                padding: 60px 20px;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+
+            .values-section {
+                padding: 60px 20px;
+            }
+
+            .values-grid {
+                gap: 40px;
+            }
+
+            .team-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BuddiesbyIssy</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="collection.html">COLLECTION</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">OUR STORY</h1>
+        <p class="page-subtitle">WHERE ELEGANCE MEETS INNOVATION</p>
+    </div>
+
+    <section class="about-section">
+        <div class="story-grid">
+            <img class="story-img" src="https://images.unsplash.com/photo-1558769132-92e717d613cd?w=800&q=80" alt="Our Story">
+            <div class="story-content">
+                <h2>FOUNDED IN 2020</h2>
+                <p>BuddiesbyIssy began with a simple vision: to create timeless fashion pieces that empower individuals to express their unique style. What started as a small studio has grown into a beloved brand known for quality, elegance, and attention to detail.</p>
+                <p>Every piece in our collection is thoughtfully designed and crafted with premium materials, ensuring that you not only look exceptional but feel confident in everything you wear.</p>
+            </div>
+        </div>
+
+        <div class="story-grid">
+            <div class="story-content">
+                <h2>OUR PHILOSOPHY</h2>
+                <p>We believe fashion should be sustainable, ethical, and accessible. Our commitment goes beyond creating beautiful clothes—we're dedicated to making a positive impact on the environment and the communities we work with.</p>
+                <p>Each collection is produced in limited quantities to reduce waste, and we partner with artisans and manufacturers who share our values of fair labor practices and environmental responsibility.</p>
+            </div>
+            <img class="story-img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80" alt="Our Philosophy">
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="values-title">OUR VALUES</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">✦</div>
+                <h3>QUALITY</h3>
+                <p>We use only the finest materials and work with skilled artisans to ensure every piece meets our exacting standards.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">♡</div>
+                <h3>SUSTAINABILITY</h3>
+                <p>Our commitment to the planet drives every decision, from sourcing to production to packaging.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">✧</div>
+                <h3>INNOVATION</h3>
+                <p>We constantly push boundaries, blending classic elegance with contemporary design and technology.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">◊</div>
+                <h3>INCLUSIVITY</h3>
+                <p>Fashion is for everyone. We celebrate diversity and create designs that empower all body types and identities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="team-title">MEET THE TEAM</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img class="member-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Isabella">
+                <div class="member-name">ISABELLA JONES</div>
+                <div class="member-role">Founder & Creative Director</div>
+            </div>
+            <div class="team-member">
+                <img class="member-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Marcus">
+                <div class="member-name">MARCUS CHEN</div>
+                <div class="member-role">Head of Design</div>
+            </div>
+            <div class="team-member">
+                <img class="member-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Sarah">
+                <div class="member-name">SARAH WILLIAMS</div>
+                <div class="member-role">Sustainability Director</div>
+            </div>
+            <div class="team-member">
+                <img class="member-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="James">
+                <div class="member-name">JAMES RODRIGUEZ</div>
+                <div class="member-role">Production Manager</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BUDDIESBYISSY. ALL RIGHTS RESERVED.</p>
+    </footer>
+</body>
+</html>
