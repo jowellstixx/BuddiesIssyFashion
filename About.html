@@ -39,6 +39,21 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #ffffff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
         nav ul {
             display: flex;
             gap: 40px;
@@ -239,12 +254,43 @@
                 padding: 20px;
             }
 
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                transition: right 0.3s ease;
+                padding-top: 80px;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
             nav ul {
-                gap: 15px;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            nav li {
+                border-bottom: 1px solid #333;
             }
 
             nav a {
-                font-size: 12px;
+                display: block;
+                padding: 20px 0;
+                font-size: 16px;
+            }
+
+            nav a::after {
+                display: none;
             }
 
             .page-header {
@@ -252,8 +298,13 @@
             }
 
             .page-title {
-                font-size: 40px;
+                font-size: 36px;
                 letter-spacing: 4px;
+            }
+
+            .page-subtitle {
+                font-size: 14px;
+                letter-spacing: 2px;
             }
 
             .about-section {
@@ -266,8 +317,26 @@
                 margin-bottom: 60px;
             }
 
+            .story-content h2 {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+
+            .story-content p {
+                font-size: 15px;
+            }
+
+            .story-img {
+                height: 350px;
+            }
+
             .values-section {
                 padding: 60px 20px;
+            }
+
+            .values-title {
+                font-size: 32px;
+                letter-spacing: 3px;
             }
 
             .values-grid {
@@ -277,13 +346,31 @@
             .team-section {
                 padding: 60px 20px;
             }
+
+            .team-title {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+
+            .team-grid {
+                gap: 30px;
+            }
+
+            .member-img {
+                height: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">BuddiesbyIssy</div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="collection.html">COLLECTION</a></li>
@@ -373,5 +460,24 @@
     <footer>
         <p>&copy; 2025 BUDDIESBYISSY. ALL RIGHTS RESERVED.</p>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        const navLinks = document.querySelectorAll('nav a');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
