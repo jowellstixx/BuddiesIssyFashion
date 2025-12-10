@@ -39,6 +39,21 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #ffffff;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+
         nav ul {
             display: flex;
             gap: 40px;
@@ -264,12 +279,44 @@
                 padding: 20px;
             }
 
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                transition: right 0.3s ease;
+                padding-top: 80px;
+                z-index: 999;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
             nav ul {
-                gap: 15px;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            nav li {
+                border-bottom: 1px solid #333;
             }
 
             nav a {
-                font-size: 12px;
+                display: block;
+                padding: 20px 0;
+                font-size: 16px;
+            }
+
+            nav a::after {
+                display: none;
             }
 
             .page-header {
@@ -277,8 +324,13 @@
             }
 
             .page-title {
-                font-size: 40px;
+                font-size: 36px;
                 letter-spacing: 4px;
+            }
+
+            .page-subtitle {
+                font-size: 14px;
+                letter-spacing: 2px;
             }
 
             .contact-container {
@@ -287,8 +339,31 @@
                 gap: 50px;
             }
 
+            .contact-info h2 {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+
+            .contact-info p {
+                font-size: 15px;
+            }
+
             .contact-form {
                 padding: 30px 20px;
+            }
+
+            .form-group {
+                margin-bottom: 25px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .map-section {
+                height: 300px;
+                font-size: 12px;
+                padding: 20px;
             }
         }
     </style>
@@ -296,7 +371,12 @@
 <body>
     <header>
         <div class="logo">BuddiesbyIssy</div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
             <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="collection.html">COLLECTION</a></li>
@@ -387,6 +467,24 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        const navLinks = document.querySelectorAll('nav a');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Form submission
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
         const contactForm = document.querySelector('.contact-form');
